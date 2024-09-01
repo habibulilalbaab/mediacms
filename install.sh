@@ -22,7 +22,7 @@ done
 
 
 osVersion=$(lsb_release -d)
-if [[ $osVersion == *"Ubuntu 20"* ]] || [[ $osVersion == *"Ubuntu 22"* ]] || [[ $osVersion == *"buster"* ]] || [[ $osVersion == *"bullseye"* ]]; then
+if true; then
     echo 'Performing system update and dependency installation, this will take a few minutes'
     apt-get update && apt-get -y upgrade && apt-get install python3-venv python3-dev virtualenv redis-server postgresql nginx git gcc vim unzip imagemagick python3-certbot-nginx certbot wget xz-utils -y
 else
