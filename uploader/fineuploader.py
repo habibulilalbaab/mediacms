@@ -1,6 +1,6 @@
+import os
 import re
 import shutil
-import os
 import uuid
 from io import StringIO
 from os.path import join
@@ -33,7 +33,6 @@ class BaseFineUploader(object):
         self.file = data.get("qqfile")
         self.storage_class = settings.FILE_STORAGE
         self.real_path = None
-
 
     @property
     def finished(self):

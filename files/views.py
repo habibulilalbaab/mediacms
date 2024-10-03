@@ -24,7 +24,12 @@ from rest_framework.views import APIView
 
 from actions.models import USER_MEDIA_ACTIONS, MediaAction
 from cms.custom_pagination import FastPaginationWithoutCount
-from cms.permissions import IsAuthorizedToAdd, IsUserOrEditor, user_allowed_to_upload
+from cms.permissions import (
+    IsAuthorizedToAdd,
+    IsAuthorizedToAddComment,
+    IsUserOrEditor,
+    user_allowed_to_upload,
+)
 from users.models import User
 
 from .forms import ContactForm, MediaForm, SubtitleForm
@@ -602,10 +607,10 @@ class MediaDetail(APIView):
         if serializer.is_valid():
             serializer.save(user=request.user)
             # no need to update the media file itself, only the metadata
-            #if request.data.get('media_file'):
+            # if request.data.get('media_file'):
             #    media_file = request.data["media_file"]
             #    serializer.save(user=request.user, media_file=media_file)
-            #else:
+            # else:
             #    serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -1204,7 +1209,7 @@ class CommentDetail(APIView):
     Delete comment (DELETE)
     """
 
-    permission_classes = (IsAuthorizedToAdd,)
+    permission_classes = (IsAuthorizedToAddComment,)
     parser_classes = (JSONParser, MultiPartParser, FormParser, FileUploadParser)
 
     def get_object(self, friendly_token):
