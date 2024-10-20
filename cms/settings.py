@@ -130,6 +130,10 @@ USERS_CAN_SELF_REGISTER = True
 
 RESTRICTED_DOMAINS_FOR_USER_REGISTRATION = ["xxx.com", "emaildomainwhatever.com"]
 
+# Comma separated list of domains:  ["organization.com", "private.organization.com", "org2.com"]
+# Empty list disables.
+ALLOWED_DOMAINS_FOR_USER_REGISTRATION = []   
+
 # django rest settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -530,3 +534,8 @@ LANGUAGES = [
 ]
 
 LANGUAGE_CODE = 'en'  # default language
+
+SPRITE_NUM_SECS = 10
+# number of seconds for sprite image.
+# If you plan to change this, you must also follow the instructions on admin_docs.md
+# to change the equivalent value in ./frontend/src/static/js/components/media-viewer/VideoViewer/index.js and then re-build frontend
